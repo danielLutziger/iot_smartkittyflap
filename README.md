@@ -3,7 +3,7 @@ Das Ziel des Projektes ist es, festzustellen, ob eine Katze mit einer Beute (z.B
 Die Bildanalyse mittels TensorFlow Lite erkennt Objekte, die sich vor der Kamera (in diesem Fall eine USB-Webcam) befindet und erkennt Katzen, Mäuse und somit auch beide zusammen. In einem solchen Fall wird einerseits eine WhatsApp-Nachricht via Twilio versendet, ein Log geschrieben und ein Snapshot der Kamera gespeichert. Die Daten werden ausserdem über MQTT "published" und letztendlich in einem Node-RED-Dashboard angezeigt.
 Das Node-RED-Dashboard implementiert ausserdem weitere Elemente wie die Wetterabfrage über openweathermap, eine Visualisierung des Katzentor-Status simuliert als SVG-Grafik, wesentliche KPIs der Auslastung des Pi's (Temperatur, CPU, ...) oder auch die Anzeige der letzten Logs inkl. Snapshots.
 
-Top Tier Engineering
+
 ![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/sc1.jpeg)
 ![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/sc2.jpeg)
 
