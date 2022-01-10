@@ -49,6 +49,7 @@ MQTT_CAT_IMAGE= "classify/cImage"
 MQTT_MOUSE_IMAGE= "classify/mImage"
 MQTT_CATNMOUSE_IMAGE= "classify/cnmImage"
 NGROK_PATH = "http://38c3-84-74-194-47.ngrok.io/"
+CATLOG_PATH = '/home/pi/Downloads/examples-master/lite/examples/image_classification/raspberry_pi/logs/cat.log'
 MQTT_ALL_LOG = "classify/allLog"
 MQTT_CAT_LOG = "classify/catLog"
 MQTT_MOUSE_LOG = "classify/mouseLog"
@@ -152,7 +153,7 @@ def send_message(msg, number, spot_obj):
     message = client.messages.create( 
                                   from_='whatsapp:+14155238886',  
                                   body=msg,
-                                  media_url=f'http://38c3-84-74-194-47.ngrok.io/{spot_obj}/{number}_{spot_obj}.png',
+                                  media_url=f'{NGROK_PATH}{spot_obj}/{number}_{spot_obj}.png',
                                   to='whatsapp:'+phone_number 
                               ) 
 
@@ -181,7 +182,7 @@ def generate_graph_data_for_histogram():
         but only in a 1min interval (to prevent spamming)
     """
     colspecs = [(0, 19), (24, 43)]
-    df = pd.read_fwf('/home/pi/Downloads/examples-master/lite/examples/image_classification/raspberry_pi/logs/cat.log', colspecs=colspecs, names=['date', 'spot'])
+    df = pd.read_fwf(CATLOG_PATH, colspecs=colspecs, names=['date', 'spot'])
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%d %H:%M:%S")
     df.set_index('date', inplace=True)
     df['spotted'] = 1
@@ -196,7 +197,7 @@ def generate_graph_data_for_histogram_daily():
         history data (from the log files) and will be called once on midnight.
     """
     colspecs = [(0, 19), (24, 43)]
-    df = pd.read_fwf('/home/pi/Downloads/examples-master/lite/examples/image_classification/raspberry_pi/logs/cat.log', colspecs=colspecs, names=['date', 'spot'])
+    df = pd.read_fwf(CATLOG_PATH, colspecs=colspecs, names=['date', 'spot'])
     df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%d %H:%M:%S")
     df.set_index('date', inplace=True)
     df['spotted'] = 1
