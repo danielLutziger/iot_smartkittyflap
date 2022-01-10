@@ -144,6 +144,7 @@ def send_message(msg, number, spot_obj):
     """
     account_sid = 'XXXXXXXXXXXXXXXXXXXX' 
     auth_token = 'XXXXXXXXXXXXXXXXXXXX' 
+    phone_number = '+XXXXXXXXXX'
     client = Client(account_sid, auth_token)
     
     # create an online file service whith the log files to send them as whatsapp message
@@ -152,7 +153,7 @@ def send_message(msg, number, spot_obj):
                                   from_='whatsapp:+14155238886',  
                                   body=msg,
                                   media_url=f'http://38c3-84-74-194-47.ngrok.io/{spot_obj}/{number}_{spot_obj}.png',
-                                  to='whatsapp:+XXXXXXXXXX' 
+                                  to='whatsapp:'+phone_number 
                               ) 
 
 def publish_object_statistics(stats_time, labels, cat=False):
