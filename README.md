@@ -41,6 +41,7 @@ Nun müssen einige Libraries installiert werden, bevor Sie loslegen können. Die
 - OpenWeatherMap: Geben Sie die API-Keys im Node-RED-Flow `MQTT_Publish_WeatherData` im Node `Weather from owm-api` ein. API-Keys können Sie unter [https://openweathermap.org/api](https://openweathermap.org/api) einrichten.
 - Sobald ngrok eingerichtet ist, erhalten Sie eine neue URL, unter welcher die Daten online verfügbar sind. Diese URL muss im Python-Script `classify.py` in `NGROK_PATH` eingesetzt werden.
 - Der Pfad zur lokalen Ablage der cat.log-Datei auf dem Pi muss im Python-Script `classify.py` in `CATLOG_PATH` eingesetzt werden.
+- Die Hierarchie der lokalen Logorder müsste wie folgt aussehen: `./logs/{ALL}/{Filename}` (`ALL = ALL/CAT/MOUSE/CAT_AND_MOUSE`)
 
 ### Projekt laufen lassen
 Nachdem Sie alles eingerichtet haben, müssen Sie lediglich folgende Dinge ausführen:
@@ -52,6 +53,7 @@ Sie haben das Projekt nun erfolgreich deployed und das Dashboard sollte Ihnen al
 
 ## Grobe Beschreibung des Inhalts
 - Images: Enthält Fotos und Screenshots des Projektes
+- Presentation: Enthält PowerPoint-Folien sowie zugehörige Videos der Präsentation
 - Sample_Images: Enthält Fotos der Webcam als Beispieldaten
 - Sample_Logs: Enthält Logs des Projektes als Beispieldaten
 - Source-Code: Enthält die für die Applikation notwendigen Python-Scripte und Node-RED-Flows
