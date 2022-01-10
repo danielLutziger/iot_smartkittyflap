@@ -1,21 +1,21 @@
-# ZHAW Gruppenarbeit im Modul IoT - Cat recognizer
+# ZHAW Gruppenarbeit im Modul IoT - Smart Kitty Flap
 Das Ziel des Projektes ist es, festzustellen, ob eine Katze mit einer Beute (z.B. Maus) ins Haus reinkommen will. In so einer Situation sollte letztlich das Katzentor verschlossen werden, bis die Katze wieder ohne Beute gesichtet wird. Dafür wurde ein Raspberry Pi mit einer Kamera, die über einem Katzentor installiert wird, verwendet.
 Die Bildanalyse mittels TensorFlow Lite erkennt Objekte, die sich vor der Kamera (in diesem Fall eine USB-Webcam) befindet und erkennt Katzen, Mäuse und somit auch beide zusammen. In einem solchen Fall wird einerseits eine WhatsApp-Nachricht via Twilio versendet, ein Log geschrieben und ein Snapshot der Kamera gespeichert. Die Daten werden ausserdem über MQTT "published" und letztendlich in einem Node-RED-Dashboard angezeigt.
 Das Node-RED-Dashboard implementiert ausserdem weitere Elemente wie die Wetterabfrage über openweathermap, eine Visualisierung des Katzentor-Status simuliert als SVG-Grafik, wesentliche KPIs der Auslastung des Pi's (Temperatur, CPU, ...) oder auch die Anzeige der letzten Logs inkl. Snapshots.
 
 Top Tier Engineering
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/sc1.jpeg)
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/sc2.jpeg)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/sc1.jpeg)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/sc2.jpeg)
 
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Sample_Images/ALL/18731_ALL.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Sample_Images/ALL/18731_ALL.png)
 
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Sample_Images/CAT/345_CAT.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Sample_Images/CAT/345_CAT.png)
 
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/s1.png)
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/s3.png)
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/s4.png)
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/s5.png)
-![Top Tier Engineering](https://github.com/lutzidan/iot_catrecognizer/blob/main/Images/s6.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/s1.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/s3.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/s4.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/s5.png)
+![Top Tier Engineering](https://github.com/lutzidan/iot_smartkittyflap/blob/main/Images/s6.png)
 
 ## Anmerkungen
 Der Code aus dem Video wurde leicht angepasst, um Daten zu simulieren. Das Problem war, dass die Katze in der Zeit der Bearbeitung keine Maus/Tier nach Hause brachte. Folglich müsste dieser Punkt in einer nächsten Version genauer angeschaut werden. 
@@ -36,16 +36,18 @@ Nun müssen einige Libraries installiert werden, bevor Sie loslegen können. Die
 - [Node-RED](https://nodered.org/docs/getting-started/raspberrypi)
 - [ngrok](https://ngrok.com/download) wurde für das Port-Forwarding verwendet. Siehe auch: [Access your Pi Away From your Home or Local Network](https://www.dexterindustries.com/howto/access-your-raspberry-pi-from-outside-your-home-or-local-network/)
 
-### Einrichten von API Keys und weiteren privaten Angaben, die aus dem Projekt entfernt wurden
+### Einrichten von API Keys und notwendige Anpassungen
 - Twilio: Geben Sie die API-Keys in `account_sid`, `auth_token` sowie Ihre Telefonnummer in `phone_number` im Python-Script `classify.py` an.
 - OpenWeatherMap: Geben Sie die API-Keys im Node-RED-Flow `MQTT_Publish_WeatherData` im Node `Weather from owm-api` ein. API-Keys können Sie unter [https://openweathermap.org/api](https://openweathermap.org/api) einrichten.
+- Sobald ngrok eingerichtet ist, erhalten Sie eine neue URL, unter welcher die Daten online verfügbar sind. Diese URL muss im Python-Script `classify.py` in `NGROK_PATH` eingesetzt werden.
+- Der Pfad zur lokalen Ablage der cat.log-Datei auf dem Pi muss im Python-Script `classify.py` in `CATLOG_PATH` eingesetzt werden.
 
 ### Projekt laufen lassen
 Nachdem Sie alles eingerichtet haben, müssen Sie lediglich folgende Dinge ausführen:
 1. Öffnen Sie `classify.py` und starten Sie das Python-Script. Nutzen Sie dafür beispielsweise die vorinstallierte Software "Thonny".
 2. Öffnen Sie ein Terminal-Fenster und geben Sie `node-red` ein, um Node-RED zu starten. 
 3. Öffnen Sie den Node-RED-Editor über die URL [http://localhost:1880/](http://localhost:1880/). Das Dashboard können Sie letztlich über [http://localhost:1880/ui](http://localhost:1880/ui) erreichen.
-4. Importieren Sie die Flows von `Node_Red_Flows_CatProject.json` und deployen Sie die Flows, nachdem Sie oben beschriebene API-Keys und weitere Einrichtungen abgeschlossen haben.
+4. Importieren Sie die Flows von `Node_Red_Flows_SmartKittyFlap.json` und deployen Sie die Flows, nachdem Sie oben beschriebene API-Keys und weitere Einrichtungen abgeschlossen haben.
 Sie haben das Projekt nun erfolgreich deployed und das Dashboard sollte Ihnen alle notwendigen Angaben liefern.
 
 ## Grobe Beschreibung des Inhalts
