@@ -125,7 +125,7 @@ def got_spotted(start_time, message_time, spot_object, image, stringSpot, loggy)
         generate_graph_data_for_histogram()
     return start_time, spot_object, message_time
 
-
+# In Anlehnung an https://stackoverflow.com/questions/17035077/logging-to-multiple-log-files-from-different-classes-in-python
 formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
 def setup_logger(name, log_file, level=logging.WARNING):
     """
