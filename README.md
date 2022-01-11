@@ -87,3 +87,6 @@ Enthält alle Flows, welche für Node-RED benötigt werden.
 -> Port-Forwarding-Lösungen wie remote.it könnte man in Zukunft näher betrachten.
 - Der Livestream ins Node-RED-Dashboard liess sich nicht ohne weiteres Realisieren, weshalb wir mit den Snapshots gearbeitet haben.
 - Auch Snapshots mussten online Verfügbar sein, dies wurde ebenfalls mit ngrok gelöst.
+
+## Quellen
+Tensorflow Code in Anlehnung an https://www.tensorflow.org/lite/examples/image_classification/overview
