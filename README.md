@@ -90,3 +90,4 @@ Enthält alle Flows, welche für Node-RED benötigt werden.
 
 ## Quellen
 Tensorflow Code in Anlehnung an https://www.tensorflow.org/lite/examples/image_classification/overview
+Logger Methode in Anlehnung an https://stackoverflow.com/questions/17035077/logging-to-multiple-log-files-from-different-classes-in-python
